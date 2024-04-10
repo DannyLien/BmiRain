@@ -14,4 +14,7 @@ fun main() {
     println(name.get(1))    //a
     name = "Jack"
     println(name)       //Jack
+    val c='A'
+    println(c)
+    
 }
