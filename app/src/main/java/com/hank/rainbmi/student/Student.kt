@@ -11,10 +11,15 @@ class Student(
     var english: Int = 0,
     var math: Int = 0
 ) {
-//    constructor(id: String, name: String) : this(id, name, 0, 0)
+    //    constructor(id: String, name: String) : this(id, name, 0, 0)
+    companion object {
+        var pass = 60
+    }
+
+    val mark = if (average() < pass) "*" else " "
 
     fun print() {
-        println("$id\t$name\t$english\t$math\t${average()}\t${grading()}")
+        println("$id\t$name\t$english\t$math\t${average()}$mark\t${grading()}")
     }
 
     fun average(): Int {
@@ -33,26 +38,27 @@ class Student(
 
 
 fun main() {
+    Student.pass = 50
     val students = listOf<Student>(
-        Student("001", "Jack", 100, 100),
+        Student("001", "Jack", 40, 60),
         Student("002", "Hank", 66, 87),
         Student("003", "Jane")
     )
     //meehod-3
-    for (stu in students){
+    for (stu in students) {
         stu.print()
     }
     //method-2
-    for (i in 0..2){
-        students.get(i).print()
-    }
+//    for (i in 0..2){
+//        students.get(i).print()
+//    }
     //method-1
-    val stu1 = Student("001", "Jack", 100, 100)
-    val stu2 = Student("002", "Hank", 66, 87)
-    val stu3 = Student("003", "Jane")
-    stu1.print()
-    stu2.print()
-    stu3.print()
+//    val stu1 = Student("001", "Jack", 100, 100)
+//    val stu2 = Student("002", "Hank", 66, 87)
+//    val stu3 = Student("003", "Jane")
+//    stu1.print()
+//    stu2.print()
+//    stu3.print()
 
 }
 
