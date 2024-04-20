@@ -5,7 +5,7 @@ package com.hank.rainbmi.student
 //印出學生平均成績
 //印出學生等級(A,B,C,D)
 
-class Student(
+open class Student(
     val id: String,
     val name: String,
     var english: Int = 0,
@@ -16,9 +16,8 @@ class Student(
         var pass = 60
     }
 
-    val mark = if (average() < pass) "*" else " "
-
-    fun print() {
+    open fun print() {
+        val mark = if (average() < pass) "*" else " "
         println("$id\t$name\t$english\t$math\t${average()}$mark\t${grading()}")
     }
 
