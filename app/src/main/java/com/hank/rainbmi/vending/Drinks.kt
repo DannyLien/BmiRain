@@ -1,6 +1,12 @@
-package com.hank.rainbmi
+package com.hank.rainbmi.vending
 
 fun main() {
+
+    val tea = Drink("Black tea", 0, 50)
+    println(tea)
+    val tea2 = tea.copy(suger = 5)
+    println(tea2)
+
     //method-2
     val drinks = mutableMapOf<Int, String>(
         //method-1
