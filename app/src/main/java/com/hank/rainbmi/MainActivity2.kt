@@ -41,6 +41,7 @@ class MainActivity2 : AppCompatActivity() {
                 GuessGame.Status.BIGGER -> getString(R.string.bigger)
                 else -> getString(R.string.you_got_it)
             }
+            binding.counter.text = game.counter.toString()
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.info))
                 .setMessage(message)
