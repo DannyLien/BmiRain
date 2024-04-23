@@ -1,9 +1,11 @@
 package com.hank.rainbmi
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +16,10 @@ import kotlin.math.log
 import kotlin.random.Random
 
 class MainActivity2 : AppCompatActivity() {
+    val TAG = MainActivity2::class.java.simpleName
     private lateinit var binding: ActivityMainBinding
     val game = GuessGame()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()  //要留
@@ -32,6 +36,12 @@ class MainActivity2 : AppCompatActivity() {
             .show()
 
     }
+//匿名類別
+//    val okLisener = object : DialogInterface.OnClickListener {
+//        override fun onClick(dialog: DialogInterface?, which: Int) {
+//            TODO("Not yet implemented")
+//        }
+//    }
 
     fun guess(view: View) {
         if (!binding.number.text.toString().equals("")) {
@@ -45,7 +55,13 @@ class MainActivity2 : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.info))
                 .setMessage(message)
+                //.setPositiveButton(getString(R.string.ok), okLisener)
                 .setPositiveButton(getString(R.string.ok), null)
+                .setNegativeButton("Replay", { dialog, which ->
+                    Log.d(TAG, "Replay")
+                    game.reset()
+                    binding.counter.text = game.counter.toString()
+                })
                 .show()
 
         } else {
