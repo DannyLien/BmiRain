@@ -4,7 +4,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-    
+
 }
 
 android {
@@ -68,25 +68,25 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
 
-//    implementation(libs.androidx.ui)
-//    implementation(libs.androidx.ui.graphics)
-//    implementation(libs.androidx.ui.tooling.preview)
-//    implementation(libs.androidx.material3)
-//    implementation(libs.androidx.appcompat)
-//    implementation(libs.material)
-//    implementation(libs.androidx.constraintlayout)
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.junit)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
 
-    implementation("androidx.compose.ui:ui")
-    implementation ("androidx.compose.ui:ui-graphics")
-    implementation ("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3: material3")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material: material:1.11.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation ("junit:junit:4.13.2")
-    androidTestImplementation ("androidx.test.ext:junit: 1.1.5")
+//    implementation("androidx.compose.ui:ui")
+//    implementation ("androidx.compose.ui:ui-graphics")
+//    implementation ("androidx.compose.ui:ui-tooling-preview")
+//    implementation("androidx.compose.material3: material3")
+//    implementation("androidx.appcompat:appcompat:1.6.1")
+//    implementation("com.google.android.material: material:1.11.0")
+//    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+//    testImplementation ("junit:junit:4.13.2")
+//    androidTestImplementation ("androidx.test.ext:junit: 1.1.5")
 
     implementation(libs.androidx.activity)
     androidTestImplementation(libs.androidx.espresso.core)
