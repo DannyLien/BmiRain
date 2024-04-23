@@ -15,8 +15,7 @@ import kotlin.random.Random
 
 class MainActivity2 : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    val secret = Random.nextInt(1, 11)
-
+    val game = GuessGame()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()  //要留
@@ -29,7 +28,7 @@ class MainActivity2 : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Toast.makeText(this, getString(R.string.secret_number_is) + secret, Toast.LENGTH_LONG)
+        Toast.makeText(this, getString(R.string.secret_number_is) + game.secret, Toast.LENGTH_LONG)
             .show()
 
     }
@@ -37,13 +36,10 @@ class MainActivity2 : AppCompatActivity() {
     fun guess(view: View) {
         if (!binding.number.text.toString().equals("")) {
             val num = binding.number.text.toString().toInt()
-            Log.d("Mainactivity2", num.toString())
-            var message = if (num > secret) {
-                getString(R.string.smaller)
-            } else if (num < secret) {
-                getString(R.string.bigger)
-            } else {
-                getString(R.string.you_got_it)
+            val message = when (game.guess(num)) {
+                GuessGame.Status.SMALLER -> getString(R.string.smaller)
+                GuessGame.Status.BIGGER -> getString(R.string.bigger)
+                else -> getString(R.string.you_got_it)
             }
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.info))
