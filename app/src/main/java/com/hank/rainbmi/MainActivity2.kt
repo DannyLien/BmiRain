@@ -11,11 +11,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.hank.rainbmi.databinding.ActivityMainBinding
 import kotlin.math.log
 import kotlin.random.Random
 
 class MainActivity2 : AppCompatActivity() {
+    private lateinit var viewModel: GuessViewModel
     val TAG = MainActivity2::class.java.simpleName
     private lateinit var binding: ActivityMainBinding
     val game = GuessGame()
@@ -23,7 +25,7 @@ class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()  //要留
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
 //            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -32,10 +34,14 @@ class MainActivity2 : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //ViewModel
+        viewModel = ViewModelProvider(this).get(GuessViewModel::class.java)
+
         Toast.makeText(this, getString(R.string.secret_number_is) + game.secret, Toast.LENGTH_LONG)
             .show()
 
     }
+
 //匿名類別
 //    val okLisener = object : DialogInterface.OnClickListener {
 //        override fun onClick(dialog: DialogInterface?, which: Int) {
