@@ -36,6 +36,9 @@ class MainActivity2 : AppCompatActivity() {
 
         //ViewModel
         viewModel = ViewModelProvider(this).get(GuessViewModel::class.java)
+        viewModel.counter.observe(this, { counter ->
+            binding.counter.text = counter.toString()
+        })
 
         Toast.makeText(this, getString(R.string.secret_number_is) + game.secret, Toast.LENGTH_LONG)
             .show()
