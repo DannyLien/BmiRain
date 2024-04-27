@@ -28,53 +28,46 @@ class MainActivity2 : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //ViewModel
+        //ViewModel 監聽 建立
         viewModel = ViewModelProvider(this).get(GuessViewModel::class.java)
-        //LiveData
+        //LiveData 監聽
         viewModel.counter.observe(this, { counter ->
             binding.counter.text = counter.toString()
         })
-
+        //LiveData
+        viewModel.status.observe(this, { status ->
+            val message = when (status) {
+                GameStatus.BIGGER -> getString(R.string.bigger)
+                GameStatus.SMALLER -> getString(R.string.smaller)
+                GameStatus.INIT -> ""
+                else -> getString(R.string.you_got_it)
+            }
+            if (status != GameStatus.INIT) {
+                AlertDialog.Builder(this)
+                    .setTitle("Info")
+                    .setMessage(message)
+                    .setPositiveButton("OK", null)
+                    .setNegativeButton("Replay", { dialog, which ->
+                        Log.d(TAG, "Replay ")
+//                    game.reset()
+                        viewModel.reset()
+//                    binding.counter.text = game.counter.toString()
+                    })
+                    .show()
+            }
+        })
         Toast.makeText(this, getString(R.string.secret_number_is) + game.secret, Toast.LENGTH_LONG)
             .show()
 
     }
 
-//匿名類別
-//    val okLisener = object : DialogInterface.OnClickListener {
-//        override fun onClick(dialog: DialogInterface?, which: Int) {
-//            TODO("Not yet implemented")
-//        }
-//    }
-
     fun guess(view: View) {
-        //viewModel
-        viewModel.guess(binding.number.text.toString().toInt())
+        if(!binding.number.text.toString().equals(""))
+        {
+            //viewModel
+            viewModel.guess(binding.number.text.toString().toInt())
+        }
 
-//        if (!binding.number.text.toString().equals("")) {
-//            val num = binding.number.text.toString().toInt()
-//            val message = when (game.guess(num)) {
-//                GuessGame.Status.SMALLER -> getString(R.string.smaller)
-//                GuessGame.Status.BIGGER -> getString(R.string.bigger)
-//                else -> getString(R.string.you_got_it)
-//            }
-//            binding.counter.text = game.counter.toString()
-//            AlertDialog.Builder(this)
-//                .setTitle(getString(R.string.info))
-//                .setMessage(message)
-//                //.setPositiveButton(getString(R.string.ok), okLisener)
-//                .setPositiveButton(getString(R.string.ok), null)
-//                .setNegativeButton("Replay", { dialog, which ->
-//                    Log.d(TAG, "Replay")
-//                    game.reset()
-//                    binding.counter.text = game.counter.toString()
-//                })
-//                .show()
-//
-//        } else {
-//            Toast.makeText(this, getString(R.string.please_enter_a_number_1_10), Toast.LENGTH_LONG)
-//                .show()
-//        }
     }
 
 }
