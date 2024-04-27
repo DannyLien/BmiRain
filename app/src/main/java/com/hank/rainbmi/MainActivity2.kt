@@ -76,6 +76,8 @@ class MainActivity2 : AppCompatActivity() {
 
     fun setNickname(view: View) {
         val intent = Intent(this, NicknameActivity::class.java)
+        intent.putExtra("EXTRA_LEVEL", 3)
+        intent.putExtra("NAME", "Hank")
         startActivity(intent)
     }
 

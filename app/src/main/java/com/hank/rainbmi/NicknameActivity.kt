@@ -1,12 +1,14 @@
 package com.hank.rainbmi
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class NicknameActivity : AppCompatActivity() {
+    val TAG = NicknameActivity::class.java.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -17,11 +19,12 @@ class NicknameActivity : AppCompatActivity() {
 //            insets
 //        }
 
+        val level = intent.getIntExtra("EXTRA_LEVEL", 0)
+        val name = intent.getStringExtra("NAME")
 
+        Log.d(TAG, "onCreate: $level $name")
 
     }
-
-
 
 
 }
