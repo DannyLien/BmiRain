@@ -18,6 +18,7 @@ import kotlin.math.log
 import kotlin.random.Random
 
 class MainActivity2 : AppCompatActivity() {
+    private val NICKNAME_REQ: Int = 11
     private lateinit var viewModel: GuessViewModel
     val TAG = MainActivity2::class.java.simpleName
     private lateinit var binding: ActivityMainBinding
@@ -78,7 +79,19 @@ class MainActivity2 : AppCompatActivity() {
         val intent = Intent(this, NicknameActivity::class.java)
         intent.putExtra("EXTRA_LEVEL", 3)
         intent.putExtra("NAME", "Hank")
-        startActivity(intent)
+//        startActivity(intent)
+
+        startActivityForResult(intent, NICKNAME_REQ)
+
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == NICKNAME_REQ) {
+            Log.d(TAG, "onActivityResult: $resultCode ")
+            val nickname = data?.getStringExtra("NICK")
+            Log.d(TAG, "onActivityResult: $nickname")
+        }
+
+    }
 }

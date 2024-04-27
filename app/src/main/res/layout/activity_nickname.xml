@@ -12,7 +12,7 @@
         android:id="@+id/edNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="300dp"
         android:ems="10"
         android:inputType="text"
         android:minHeight="48dp"
@@ -20,17 +20,17 @@
         android:theme="@style/Theme.BmiRain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="TextView"
-        android:theme="@style/Theme.BmiRain"
+        android:layout_marginTop="16dp"
+        android:onClick="save"
+        android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/edNickname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
