@@ -31,11 +31,11 @@ class MainActivity2 : AppCompatActivity() {
         //ViewModel 監聽 建立
         viewModel = ViewModelProvider(this).get(GuessViewModel::class.java)
         //LiveData 監聽
-        viewModel.counter.observe(this, { counter ->
+        viewModel.counter.observe(this) { counter ->
             binding.counter.text = counter.toString()
-        })
+        }
         //LiveData
-        viewModel.status.observe(this, { status ->
+        viewModel.status.observe(this) { status ->
             val message = when (status) {
                 GameStatus.BIGGER -> getString(R.string.bigger)
                 GameStatus.SMALLER -> getString(R.string.smaller)
@@ -47,23 +47,26 @@ class MainActivity2 : AppCompatActivity() {
                     .setTitle("Info")
                     .setMessage(message)
                     .setPositiveButton("OK", null)
-                    .setNegativeButton("Replay", { dialog, which ->
+                    .setNegativeButton("Replay") { dialog, which ->
                         Log.d(TAG, "Replay ")
-//                    game.reset()
                         viewModel.reset()
-//                    binding.counter.text = game.counter.toString()
-                    })
+                    }
                     .show()
             }
-        })
-        Toast.makeText(this, getString(R.string.secret_number_is) + game.secret, Toast.LENGTH_LONG)
-            .show()
+        }
+
+        viewModel.secretData.observe(this) { secret ->
+            Toast.makeText(
+                this,
+                getString(R.string.secret_number_is) + "$secret",
+                Toast.LENGTH_LONG
+            ).show()
+        }
 
     }
 
     fun guess(view: View) {
-        if(!binding.number.text.toString().equals(""))
-        {
+        if (!binding.number.text.toString().equals("")) {
             //viewModel
             viewModel.guess(binding.number.text.toString().toInt())
         }
