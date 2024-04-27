@@ -2,6 +2,7 @@ package com.hank.rainbmi
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -71,6 +72,11 @@ class MainActivity2 : AppCompatActivity() {
             viewModel.guess(binding.number.text.toString().toInt())
         }
 
+    }
+
+    fun setNickname(view: View) {
+        val intent = Intent(this, NicknameActivity::class.java)
+        startActivity(intent)
     }
 
 }
