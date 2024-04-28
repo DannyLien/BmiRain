@@ -9,6 +9,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -23,6 +24,13 @@ class MainActivity2 : AppCompatActivity() {
     val TAG = MainActivity2::class.java.simpleName
     private lateinit var binding: ActivityMainBinding
     val game = GuessGame()
+    val requestNickname =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val nickname = result.data?.getStringExtra("NICK")
+                Log.d(TAG, "Result: $nickname ")
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,9 +88,8 @@ class MainActivity2 : AppCompatActivity() {
         intent.putExtra("EXTRA_LEVEL", 3)
         intent.putExtra("NAME", "Hank")
 //        startActivity(intent)
-
-        startActivityForResult(intent, NICKNAME_REQ)
-
+//        startActivityForResult(intent, NICKNAME_REQ)
+        requestNickname.launch(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
