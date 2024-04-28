@@ -38,6 +38,8 @@ class MainActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d(TAG, "onCreate: ")
         enableEdgeToEdge()  //要留
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -79,6 +81,8 @@ class MainActivity2 : AppCompatActivity() {
 
     }
 
+        
+
     fun guess(view: View) {
         if (!binding.number.text.toString().equals("")) {
             //viewModel
@@ -105,4 +109,35 @@ class MainActivity2 : AppCompatActivity() {
         }
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume: ")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart: ")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause: ")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart: ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop: ")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy: ")
+    }
 }
+
