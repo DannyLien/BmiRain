@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
+import com.hank.rainbmi.data.GameDatabase
+import com.hank.rainbmi.data.Record
 import com.hank.rainbmi.databinding.ActivityMainBinding
 import kotlin.math.log
 import kotlin.random.Random
@@ -38,7 +41,6 @@ class MainActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         Log.d(TAG, "onCreate: ")
         enableEdgeToEdge()  //要留
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -78,7 +80,19 @@ class MainActivity2 : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
         }
-
+        //Room test
+        val database = Room.databaseBuilder(
+            this, GameDatabase::class.java, "game.db"
+        )
+            .build()
+        val record = Record("Eric", 11)
+        Thread() {
+//            database.recordDao().insert(record)
+            val list = database.recordDao().getAll()
+            for (r in list){
+                Log.d(TAG, "onCreate: ${r.nickname}")
+            }
+        }.start()
     }
 
     fun guess(view: View) {
@@ -98,7 +112,7 @@ class MainActivity2 : AppCompatActivity() {
         requestNickname.launch(intent)
         Intent(this, NicknameActivity::class.java).apply {
             putExtra("A", "ABC")
-            putExtra("B","Testing")
+            putExtra("B", "Testing")
         }.also {
             requestNickname.launch(it)
         }
