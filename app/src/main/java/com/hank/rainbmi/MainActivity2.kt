@@ -81,8 +81,6 @@ class MainActivity2 : AppCompatActivity() {
 
     }
 
-        
-
     fun guess(view: View) {
         if (!binding.number.text.toString().equals("")) {
             //viewModel
@@ -98,6 +96,13 @@ class MainActivity2 : AppCompatActivity() {
 //        startActivity(intent)
 //        startActivityForResult(intent, NICKNAME_REQ)
         requestNickname.launch(intent)
+        Intent(this, NicknameActivity::class.java).apply {
+            putExtra("A", "ABC")
+            putExtra("B","Testing")
+        }.also {
+            requestNickname.launch(it)
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
