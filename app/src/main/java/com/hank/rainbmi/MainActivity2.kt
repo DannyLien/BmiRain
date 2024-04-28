@@ -26,6 +26,10 @@ class MainActivity2 : AppCompatActivity() {
     val game = GuessGame()
     val requestNickname =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val nickename = getSharedPreferences("guess", MODE_PRIVATE)
+                .getString("nickname", null)
+            Log.d(TAG, "Data: $nickename")
+
             if (result.resultCode == RESULT_OK) {
                 val nickname = result.data?.getStringExtra("NICK")
                 Log.d(TAG, "Result: $nickname ")

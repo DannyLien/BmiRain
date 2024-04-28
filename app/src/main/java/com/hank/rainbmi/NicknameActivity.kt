@@ -33,6 +33,10 @@ class NicknameActivity : AppCompatActivity() {
 
     fun save(view: View) {
         val nickname = binding.edNickname.text.toString()
+        getSharedPreferences("guess", MODE_PRIVATE)
+            .edit()
+            .putString("nickname", nickname)
+            .apply()
         setResult(RESULT_OK, intent.putExtra("NICK", nickname))
         finish()
     }
